@@ -27,12 +27,14 @@ class MainApplication : Application() {
             ),
             // (Опционально) Если нужно включить дополнительные Фичи Jazz SDK
             coreConfigDependencies = JazzCoreConfigDependencies(
-                featureFlags = object : JazzSdkFeatureFlags {
+                featureFlags = JazzSdkFeatureFlags(
                     // Тут подключить нужные флаги или выключить что-то
                     // TODO - кнопка поделиться не показывается, чатик не скрывается
-                    override val isC2CAddParticipantShareButtonEnabled: Boolean = true
-                    override val isChatEnabled: Boolean = false
-                }
+                    isC2CAddParticipantShareButtonEnabled = true,
+                    isChatEnabled = false,
+                    isConferenceTransferByNetworkEnabled = true,
+                    isRoomCheckEnabled = true,
+                )
             ),
             coreAnalyticsDependencies = object : JazzCoreAnalyticsDependencies {},
         )
