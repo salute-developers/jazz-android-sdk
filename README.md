@@ -1,3 +1,7 @@
+### Основную документацию можно найти тут -> https://developers.sber.ru/docs/ru/jazz/sdk/overview
+
+### Что бы создать комнату, для начала нужно получить ключ авторизации -> https://developers.sber.ru/docs/ru/jazz/sdk/sdk-key
+
 [Инициализация](READ-sdk-initialization.md)
 
 [Сценарии использования](READ-sdk-scenarios.md)
