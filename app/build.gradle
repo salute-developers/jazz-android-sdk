@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.sd.jazz_testapp"
@@ -46,8 +46,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     //Jazz SDK
-    implementation("com.sdkit.android:core-ext:23.05.1.378")
-    implementation("com.sdkit.android:jazz-public-sdk:23.05.1.378")
+    implementation("com.sdkit.android:core-ext:23.06.1.379")
+    implementation("com.sdkit.android:jazz-public-sdk:23.06.1.379")
 
     // TODO захардкоженная версия firebase так как в pom mp_videocalls, пока не прописывается версия
     implementation("com.google.firebase:firebase-analytics-ktx:21.2.0")
