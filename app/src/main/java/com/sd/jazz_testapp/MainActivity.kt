@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
-    // Что бы получить ваш ключ, пройдите сюда -> https://developers.sber.ru/docs/ru/jazz/sdk/sdk-key
+    // Что бы получить ваш ключ, пройдите сюда -> https://clck.ru/35aWZw
     // Так же добавить этот JazzTokenProvider можно в DefaultJazzPlatformDependencies,
     // которые прокидываются в MainApplication
     val jazzSdkTokenProvider = JazzSdkTokenProvider(provider = object: JazzTokenConfigurationProvider {

@@ -1,10 +1,12 @@
-### Основную документацию можно найти тут -> https://developers.sber.ru/docs/ru/jazz/sdk/overview
+[Основную документацию можно найти тут](https://clck.ru/35aWZB)
 
-### Что бы создать комнату, для начала нужно получить ключ авторизации -> https://developers.sber.ru/docs/ru/jazz/sdk/sdk-key
+[Что бы создать комнату, для начала получите ключ авторизации тут](https://clck.ru/35aWZw)
 
 [Инициализация](READ-sdk-initialization.md)
 
 [Сценарии использования](READ-sdk-scenarios.md)
+
+[Лицензия на использование](https://clck.ru/35F8h3)
 
 ## Как подключить JAZZ SDK
 ### 1 Шаг. В settings.gradle, аналогично заполняем блок repositories, обязательно не забыть про jcenter():
