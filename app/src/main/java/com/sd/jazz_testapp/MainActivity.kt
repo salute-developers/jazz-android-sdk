@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.sd.jazz_testapp.databinding.ActivityMainBinding
 import com.sdkit.jazz.client.integration.api.domain.JazzTokenProvider
 import com.sdkit.jazz.client.integration.api.model.AudioDevice
+import com.sdkit.jazz.client.integration.api.model.ConferenceConnectionArguments
 import com.sdkit.jazz.client.integration.api.model.CreateVideoCallArguments
 import com.sdkit.jazz.client.integration.api.model.JazzTokenConfiguration
 import com.sdkit.jazz.client.integration.api.model.JoinVideoCallArguments
@@ -92,8 +93,10 @@ class MainActivity : AppCompatActivity() {
                     // Выполняем присоединение к запланированной встрече
                     val joinArgs = JoinVideoCallArguments(
                         userName = "Имя участника",
-                        roomCode = scheduled.conference.code,
-                        password = scheduled.conference.password,
+                        conferenceConnectionArguments = ConferenceConnectionArguments.RoomCode(
+                            roomCode = scheduled.conference.code,
+                            password = scheduled.conference.password,
+                        ),
                         micEnabled = false,
                         cameraEnabled = false
                     )

@@ -29,8 +29,6 @@ class MainApplication : Application() {
             coreConfigDependencies = JazzCoreConfigDependencies(
                 featureFlags = JazzSdkFeatureFlags(
                     // Тут подключить нужные флаги или выключить что-то
-                    // TODO - кнопка поделиться не показывается, чатик не скрывается
-                    isC2CAddParticipantShareButtonEnabled = true,
                     isChatEnabled = false,
                     isConferenceTransferByNetworkEnabled = true,
                     isRoomCheckEnabled = true,

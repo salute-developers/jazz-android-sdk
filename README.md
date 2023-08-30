@@ -57,12 +57,13 @@ plugins {
 * Дополняем блок dependencies:
 ```groovy
     //Jazz SDK
-    implementation("com.sdkit.android:core-ext:23.04.1.291")
-    implementation("com.sdkit.android:jazz-public-sdk:23.04.1.291")
+    implementation("com.sdkit.android:core-ext:23.07.1.29")
+    implementation("com.sdkit.android:jazz-public-sdk:23.07.1.29")
+    implementation("com.sdkit.jazz:jazzcastlib:1.14.45")
 
     //region TODO Не правильно подтягиваются из pom зависимости, подключенные через bom
     implementation(platform('androidx.compose:compose-bom:2022.11.00'))
-    implementation(platform('com.google.firebase:firebase-bom:29.0.0'))
+    implementation(platform('com.google.firebase:firebase-bom:32.0.0'))
     //endregion
  ```
 
