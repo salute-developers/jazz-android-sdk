@@ -1,0 +1,21 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+
+        // Здесь указаны ссылки на внутренние прокси к mavenCentral и google-репозиториям,
+        // и также указана ссылка на локальный репозиторий во внутреннем проекте.
+        maven { url "$rootDir/repo" }
+    }
+}
+rootProject.name = "jazz-testapp"
+include ':app'
