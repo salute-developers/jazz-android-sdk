@@ -60,8 +60,10 @@ plugins {
     implementation("com.sdkit.android:core-ext:23.04.1.291")
     implementation("com.sdkit.android:jazz-public-sdk:23.04.1.291")
 
-    // TODO захардкоженная версия firebase так как в pom mp_videocalls, пока не прописывается версия
-    implementation("com.google.firebase:firebase-analytics-ktx:17.5.0")
+    //region TODO Не правильно подтягиваются из pom зависимости, подключенные через bom
+    implementation(platform('androidx.compose:compose-bom:2022.11.00'))
+    implementation(platform('com.google.firebase:firebase-bom:29.0.0'))
+    //endregion
  ```
 
 
