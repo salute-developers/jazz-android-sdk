@@ -46,8 +46,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     //Jazz SDK
-    implementation("com.sdkit.android:core-ext:23.08.1.40")
-    implementation("com.sdkit.android:jazz-public-sdk:23.08.1.40")
+    implementation("com.sdkit.android:core-ext:23.08.2.41")
+    implementation("com.sdkit.android:jazz-public-sdk:23.08.2.41")
     implementation("com.sdkit.jazz:jazzcastlib:1.15.3")
 
     //region TODO Не правильно подтягиваются из pom зависимости, подключенные через bom
