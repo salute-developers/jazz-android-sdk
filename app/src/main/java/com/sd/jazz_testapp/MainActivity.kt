@@ -1,6 +1,7 @@
 package com.sd.jazz_testapp
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     val jazzSdkTokenProvider = JazzSdkTokenProvider(provider = object: JazzTokenConfigurationProvider {
         override fun getConfiguration(): JazzTokenConfiguration {
             return JazzTokenConfiguration(
-                secretKey = "ВАШ КЛЮЧ",
+                secretKey = binding.sdkKeyEditText.text.toString(),
                 liveTimeDurationInSeconds = 180
             )
         }
@@ -38,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.sdkKeyDocLinkTextView.movementMethod = LinkMovementMethod.getInstance()
 
         binding.createConferenceButton.setOnClickListener {
             getJazzIntegrationClientApi().jazzIntegrationClient.createConference(

@@ -6,6 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/sdkKeyDocLinkTextView"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="16sp"
+        android:layout_margin="8dp"
+        android:text="@string/get_your_sdk_key_here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/sdkKeyEditText"
+        />
+
+    <EditText
+        android:id="@+id/sdkKeyEditText"
+        android:layout_width="@dimen/size_200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="@string/insert_sdk_key_here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/createConferenceButton"
+        />
+
     <Button
         android:id="@+id/createConferenceButton"
         android:layout_width="wrap_content"

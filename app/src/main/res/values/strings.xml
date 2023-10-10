@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">jazz-testapp</string>
+    <string name="insert_sdk_key_here">insert sdk key here</string>
+    <string name="get_your_sdk_key_here"><a href="https://clck.ru/35aWZw">Get your sdk key here</a></string>
 </resources>
