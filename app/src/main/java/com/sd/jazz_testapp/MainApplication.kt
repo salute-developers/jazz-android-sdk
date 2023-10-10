@@ -7,6 +7,8 @@ import com.sdkit.jazz.sdk.domain.dependencies.JazzCoreAnalyticsDependencies
 import com.sdkit.jazz.sdk.domain.dependencies.JazzCoreDependencies
 import com.sdkit.jazz.sdk.domain.dependencies.JazzCoreLoggingDependencies
 import com.sdkit.jazz.sdk.domain.dependencies.JazzLoggerFactory
+import com.sdkit.jazz.sdk.domain.dependencies.JazzSdkFeatureFlags
+import ru.sberdevices.vc.platform.api.di.JazzPlatformDependencies
 
 class MainApplication : Application() {
 
@@ -19,7 +21,9 @@ class MainApplication : Application() {
             // Здесь устанавливаем платформенные зависимости Jazz
             // Обязательно нужно пробросить SECRET_KEY из смартмаркета
             // Так же в JazzPlatformDependencies переместились и FeatureFlags
-            jazzPlatformDependencies = DefaultJazzSdkPlatformDependencies(),
+            jazzPlatformDependencies = object : JazzPlatformDependencies by DefaultJazzSdkPlatformDependencies() {
+                override val videoCallsFeatureFlags = JazzSdkFeatureFlags()
+            },
             // (Опционально) Если хотите увидеть логи sdk, но только в дебаг сборках -  LogMode.LOG_DEBUG_ONLY
             coreLoggingDependencies = JazzCoreLoggingDependencies(
                 jazzLogMode = JazzLoggerFactory.LogMode.LOG_ALWAYS
