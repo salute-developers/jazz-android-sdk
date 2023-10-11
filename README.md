@@ -14,28 +14,24 @@
 dependencyResolutionManagement {
    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
    repositories {
-      google()
-      mavenCentral()
-      jcenter()
+     // Здесь указан репозиторий с которого можно скачать все необходимые зависимости,
+     // что бы не делать excludeGroup достаточно поставить наш репозиторий выше других
+     maven { url "https://jazz-sdk.nx.s2b.tech/maven2/" }
 
-      // Здесь указаны ссылки на внутренние прокси к mavenCentral и google-репозиториям,
-      // и также указана ссылка на локальный репозиторий во внутреннем проекте.
-      maven { url "$rootDir/repo" }
+     google() {
+       content { excludeGroup("com.facebook.react") }
+     }
+     mavenCentral() {
+       content { excludeGroup("com.facebook.react") }
+     }
+     jcenter() {
+       content { excludeGroup("com.facebook.react") }
+     }
    }
 }
 ```
 
-Это путь где будем локально хранить артефакты SDK:
-```groovy
- maven { url "$rootDir/repo" }
-```
-
-### 2 Шаг. Создаем необходимые директории для имитации мавена, структура должна получиться как на скрине ниже:
-![local-repo](local_repo_screen.png)
-
-В build.gradle эта структура будет выглядеть так: implementation("com.sdkit.android:jazz-public-sdk:$version")
-
-### 3 Шаг. Добавляем необходимые опции в build.gradle в модуле app перед sync project:
+### 2 Шаг. Добавляем необходимые опции в build.gradle в модуле app перед sync project:
 
 * Проверяем блок plugins, в нем должны быть необходимые плагины, как на скрине ниже:
 ```groovy
@@ -59,9 +55,9 @@ plugins {
 * Дополняем блок dependencies:
 ```groovy
     //Jazz SDK
-    implementation("com.sdkit.android:core-ext:23.07.1.29")
-    implementation("com.sdkit.android:jazz-public-sdk:23.07.1.29")
-    implementation("com.sdkit.jazz:jazzcastlib:1.14.45")
+    implementation("com.sdkit.android:core-ext:23.09.1.73")
+    implementation("com.sdkit.android:jazz-public-sdk:23.09.1.73")
+    implementation("com.sdkit.jazz:jazzcastlib:1.15.3")
 
     //region TODO Не правильно подтягиваются из pom зависимости, подключенные через bom
     implementation(platform('androidx.compose:compose-bom:2022.11.00'))

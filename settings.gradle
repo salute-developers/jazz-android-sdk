@@ -8,13 +8,21 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
-        mavenCentral()
-        jcenter()
+        // Здесь указан репозиторий с которого можно скачать все необходимые зависимости, что бы не делать excludeGroup
+        // достаточно поставить наш репозиторий выше других
+        maven { url "https://jazz-sdk.nx.s2b.tech/maven2/" }
 
-        // Здесь указаны ссылки на внутренние прокси к mavenCentral и google-репозиториям,
-        // и также указана ссылка на локальный репозиторий во внутреннем проекте.
-        maven { url "$rootDir/repo" }
+        google() {
+            content { excludeGroup("com.facebook.react") }
+        }
+        mavenCentral() {
+            content { excludeGroup("com.facebook.react") }
+        }
+        jcenter() {
+            content { excludeGroup("com.facebook.react") }
+        }
+
+
     }
 }
 rootProject.name = "jazz-testapp"
