@@ -13,9 +13,9 @@ import com.sdkit.jazz.client.integration.api.model.CreateVideoCallArguments
 import com.sdkit.jazz.client.integration.api.model.JazzTokenConfiguration
 import com.sdkit.jazz.client.integration.api.model.JoinVideoCallArguments
 import com.sdkit.jazz.client.integration.api.model.ScheduledConferenceResult
+import com.sdkit.jazz.sdk.di.JazzSdk
 import com.sdkit.jazz.sdk.di.JazzSdkTokenProvider
 import com.sdkit.jazz.sdk.di.JazzTokenConfigurationProvider
-import com.sdkit.jazz.sdk.utils.getJazzIntegrationClientApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     // Что бы получить ваш ключ, пройдите сюда -> https://clck.ru/35aWZw
     // Так же добавить этот JazzTokenProvider можно в DefaultJazzPlatformDependencies,
     // которые прокидываются в MainApplication
-    val jazzSdkTokenProvider = JazzSdkTokenProvider(provider = object: JazzTokenConfigurationProvider {
+    val jazzSdkTokenProvider = JazzSdkTokenProvider(provider = object : JazzTokenConfigurationProvider {
         override fun getConfiguration(): JazzTokenConfiguration {
             return JazzTokenConfiguration(
                 secretKey = binding.sdkKeyEditText.text.toString(),
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.sdkKeyDocLinkTextView.movementMethod = LinkMovementMethod.getInstance()
 
         binding.createConferenceButton.setOnClickListener {
-            getJazzIntegrationClientApi().jazzIntegrationClient.createConference(
+            JazzSdk.getIntegrationClientApi().jazzIntegrationClient.createConference(
                 arguments = CreateVideoCallArguments(
                     roomType = "MEETING",
                     roomName = "Новая видеовстреча",
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     fun scheduleAndJoinConference() {
         lifecycleScope.launchWhenResumed {
             val scheduled = withContext(Dispatchers.IO) {
-                getJazzIntegrationClientApi().jazzIntegrationClient.scheduleConference(
+                JazzSdk.getIntegrationClientApi().jazzIntegrationClient.scheduleConference(
                     roomType = "MEETING",
                     name = "Новая видеовстреча",
                     // Закрытая или открытая встреча
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                         micEnabled = false,
                         cameraEnabled = false
                     )
-                    getJazzIntegrationClientApi().jazzIntegrationClient.joinConference(joinArgs)
+                    JazzSdk.getIntegrationClientApi().jazzIntegrationClient.joinConference(joinArgs)
                 }
 
                 is ScheduledConferenceResult.Error -> {
