@@ -27,7 +27,6 @@ class MainApplication : Application() {
             ),
             coreConfig = JazzSdk.CoreConfig(
                 context = applicationContext,
-                featureFlags = JazzSdkFeatureFlags(),
                 analyticsDependencies = object : JazzCoreAnalyticsDependencies {},
                 loggingDependencies = JazzCoreLoggingDependencies(
                     jazzLogMode = JazzLoggerFactory.LogMode.LOG_ALWAYS
