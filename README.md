@@ -55,7 +55,7 @@ plugins {
 * Дополняем блок dependencies:
 ```groovy
     //Jazz SDK
-    implementation("com.sdkit.android:jazz-public-sdk:23.10.2.90")
+    implementation("com.sdkit.android:jazz-public-sdk:23.11.1.97")
     implementation("com.sdkit.jazz:jazzcastlib:1.15.3")
 
     //region TODO Не правильно подтягиваются из pom зависимости, подключенные через bom

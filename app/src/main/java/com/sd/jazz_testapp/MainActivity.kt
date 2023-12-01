@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                     withGuests = true,
                     // Встреча с комнатой ожидания
                     lobbyEnabled = false,
+                    summarizationEnabled = null,
                     autoRecord = null,
                     audioDevice = AudioDevice.DEFAULT,
                     jazzTokenProvider = object : JazzTokenProvider {
@@ -81,6 +82,7 @@ class MainActivity : AppCompatActivity() {
                     // Встреча с комнатой ожидания
                     lobbyEnabled = false,
                     autoRecord = false,
+                    summarizationEnabled = false,
                     jazzTokenProvider = object : JazzTokenProvider {
                         override suspend fun getToken(): String? {
                             return jazzSdkTokenProvider.getToken()
