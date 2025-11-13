@@ -55,9 +55,12 @@ plugins {
 * Дополняем блок dependencies:
 ```groovy
     //Jazz SDK
-    implementation("com.sdkit.jazz:jazz-public-sdk:24.02.1.47")
-    implementation(platform("com.sdkit.jazz:jazz-public-bom:24.02.1.47"))
-    //endregion
+implementation("com.otaliastudios:zoomlayout:1.9.0")
+
+implementation("com.sdkit.jazz:jazz-public-sdk:25.07.1.529") {
+  exclude(group: "ru.sberbank.sdakit.sbercast")
+}
+implementation(platform("com.sdkit.jazz:jazz-public-bom:25.07.1.529"))
  ```
 
 #### Дополнительный материал:

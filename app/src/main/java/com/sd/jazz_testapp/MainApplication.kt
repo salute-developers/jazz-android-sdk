@@ -1,15 +1,13 @@
 package com.sd.jazz_testapp
 
 import android.app.Application
-import com.sdkit.jazz.sdk.di.DefaultJazzSdkPlatformDependencies
+import com.sdkit.jazz.client.integration.api.model.JazzTokenConfiguration
 import com.sdkit.jazz.sdk.di.JazzSdk
+import com.sdkit.jazz.sdk.di.JazzTokenConfigurationProvider
 import com.sdkit.jazz.sdk.di.installJazzSdk
 import com.sdkit.jazz.sdk.domain.dependencies.JazzCoreAnalyticsDependencies
 import com.sdkit.jazz.sdk.domain.dependencies.JazzCoreLoggingDependencies
 import com.sdkit.jazz.sdk.domain.dependencies.JazzLoggerFactory
-import com.sdkit.jazz.sdk.domain.dependencies.JazzSdkFeatures
-import ru.sberdevices.vc.platform.api.di.JazzPlatformDependencies
-import ru.sberdevices.vc.platform.api.domain.dependencies.VideoCallsFeatureFlags
 
 class MainApplication : Application() {
 
@@ -18,12 +16,14 @@ class MainApplication : Application() {
 
         // Устанавливаем необходимые зависимости для Jazz
         installJazzSdk(
-            jazzConfig = JazzSdk.JazzConfig.Custom(
-                // Здесь устанавливаем платформенные зависимости Jazz
-                // Обязательно нужно пробросить SECRET_KEY из смартмаркета
-                platformDependencies = object : JazzPlatformDependencies by DefaultJazzSdkPlatformDependencies() {
-                    override val videoCallsFeatureFlags: VideoCallsFeatureFlags = JazzSdkFeatures()
-                }
+            jazzConfig = JazzSdk.JazzConfig.Simple(
+                JazzTokenConfigurationProvider.create {
+                    JazzTokenConfiguration(
+                        secretKey = "", // Получить ключ в https://developers.sber.ru
+                        liveTimeDurationInSeconds = 180,
+                        userId = "",
+                    )
+                },
             ),
             coreConfig = JazzSdk.CoreConfig(
                 context = applicationContext,
