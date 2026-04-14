@@ -10,6 +10,8 @@ import com.sdkit.jazz.sdk.domain.dependencies.JazzCoreLoggingDependencies
 import com.sdkit.jazz.sdk.domain.dependencies.JazzLoggerFactory
 
 class MainApplication : Application() {
+    // https://public.repo.dp.s2b.tech/repo/public/repository/jazz-maven/com/sdkit/jazz/jazz-public-sdk/25.07.1.3/jazz-public-sdk-25.07.1.3.pom
+    // https://office.dp.s2b.tech/repo/public/repository/jazz-maven/com/sdkit/jazz/jazz-public-bom/25.07.1.3/jazz-public-bom-25.07.1.3.pom
 
     override fun onCreate() {
         super.onCreate()

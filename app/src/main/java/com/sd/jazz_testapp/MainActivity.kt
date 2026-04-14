@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
                 userId = "test",
                 secretKey = binding.sdkKeyEditText.text.toString(),
                 liveTimeDurationInSeconds = 180,
-                userId = "",
             )
         }
     })

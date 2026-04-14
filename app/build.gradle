@@ -4,12 +4,13 @@ plugins {
 }
 
 android {
+    namespace "com.sd.jazz_testapp"
     compileSdk 34
 
     defaultConfig {
         applicationId "com.sd.jazz_testapp"
         minSdk 26
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -57,15 +58,10 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
 
-    //Jazz SDK
-    implementation("com.otaliastudios:zoomlayout:1.9.0")
-
-    implementation("com.sdkit.jazz:jazz-public-sdk:25.07.1.529") {
+    implementation("com.sdkit.jazz:jazz-public-sdk:25.07.1.3") {
         exclude(group: "ru.sberbank.sdakit.sbercast")
     }
-    implementation(platform("com.sdkit.jazz:jazz-public-bom:25.07.1.529"))
-
-
+    implementation(platform("com.sdkit.jazz:jazz-public-bom:25.07.1.3"))
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
