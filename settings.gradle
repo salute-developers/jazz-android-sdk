@@ -10,8 +10,9 @@ dependencyResolutionManagement {
     repositories {
         // Здесь указан репозиторий с которого можно скачать все необходимые зависимости, что бы не делать excludeGroup
         // достаточно поставить наш репозиторий выше других
-        maven { url "https://jazz-sdk.nx.s2b.tech/maven2/" }
-        maven { url "repo" }
+        maven {
+            url "https://public.repo.dp.s2b.tech/repo/public/repository/jazz-maven/"
+        }
 
         google() {
             content { excludeGroup("com.facebook.react") }
