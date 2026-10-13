@@ -3,7 +3,11 @@ package com.sd.jazz_testapp
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.util.Log
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import com.sd.jazz_testapp.databinding.ActivityMainBinding
 import com.sdkit.jazz.client.integration.api.domain.JazzTokenProvider
@@ -39,8 +43,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val bars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime(),
+            )
+            view.updatePadding(
+                left = bars.left,
+                top = bars.top,
+                right = bars.right,
+                bottom = bars.bottom,
+            )
+            insets
+        }
 
         binding.sdkKeyDocLinkTextView.movementMethod = LinkMovementMethod.getInstance()
 
@@ -78,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun scheduleAndJoinConference() {
-        lifecycleScope.launchWhenResumed {
+        lifecycleScope.launch {
             val scheduled = withContext(Dispatchers.IO) {
                 JazzSdk.getIntegrationClientApi().jazzIntegrationClient.scheduleConference(
                     CreateVideoCallArguments(
@@ -126,7 +143,7 @@ class MainActivity : AppCompatActivity() {
                     val message = "Title: ${scheduled.title}, description: ${scheduled.description}"
                     Log.e("joinConference", message, scheduled.throwable)
                 }
-                else -> Unit
+                else -> Log.d("$$$$","joinConference scheduled = $scheduled")
             }
         }
     }
