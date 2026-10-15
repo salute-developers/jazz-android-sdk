@@ -22,37 +22,47 @@ class MainActivity : AppCompatActivity() {
 
 <details><summary>Сценарий создания запланированной встречи и присоединения к ней</summary>
 
+`joinConference` не возвращается, пока конференция не закончится, и внутри открывает `VideoCallsActivity`. Вызов нельзя оборачивать в `repeatOnLifecycle(RESUMED)` или `launchWhenResumed`: при старте экрана звонка `MainActivity` уходит в `onPause`, корутина отменяется, и подключение обрывается. Используйте `lifecycleScope.launch` или `viewModelScope` — они живут дольше, чем состояние `RESUMED`.
+
 ```kotlin
 fun scheduleAndJoinConference() {
-    lifecycleScope.launchWhenResumed {
+    lifecycleScope.launch {
         val scheduled = withContext(Dispatchers.IO) {
             JazzSdk.getIntegrationClientApi().jazzIntegrationClient.scheduleConference(
-                roomType = RoomType.Anonymous.value,
-                name = "Новая видеовстреча",
-                // Закрытая или открытая встреча
-                withGuests = false,
-                // Встреча с комнатой ожидания
-                lobbyEnabled = false
+                CreateVideoCallArguments(
+                    roomType = "MEETING",
+                    roomName = "Новая видеовстреча",
+                    withGuests = true,
+                    lobbyEnabled = false,
+                    autoRecord = false,
+                    summarizationEnabled = false,
+                    jazzTokenProvider = jazzTokenProvider,
+                    cameraEnabled = false,
+                    sipEnabled = false,
+                    isRoom3dEnabled = false,
+                    micEnabled = false,
+                    userName = "",
+                )
             )
         }
 
         when (scheduled) {
-            is ScheduledConferenceResult.Success -> {
-                // Сохраняем запланированую встречу
-                // Можем разослать ее всем участникам
-                // Выполняем присоединение к запланированной встрече
+            is ConferenceResult.Success.Scheduled -> {
                 val joinArgs = JoinVideoCallArguments(
                     userName = "Имя участника",
-                    roomCode = scheduled.conference.code,
-                    password = scheduled.conference.password,
+                    conferenceConnectionArguments = ConferenceConnectionArguments.RoomCode(
+                        roomCode = scheduled.conference.code,
+                        password = scheduled.conference.password,
+                    ),
                     micEnabled = false,
-                    cameraEnabled = false
+                    cameraEnabled = false,
                 )
                 JazzSdk.getIntegrationClientApi().jazzIntegrationClient.joinConference(joinArgs)
             }
-            is ScheduledConferenceResult.Error -> {
+
+            is ConferenceResult.Error.Scheduled -> {
                 val message = "Title: ${scheduled.title}, description: ${scheduled.description}"
-                Log.e("joinConference", message , scheduled.throwable)
+                Log.e("joinConference", message, scheduled.throwable)
             }
         }
     }
